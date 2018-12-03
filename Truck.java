@@ -7,12 +7,17 @@ import java.util.ArrayList;
 public class Truck extends Vehicle {
 
     private final double GAS_RATE = 1.66;
+    private String licensePlate;
+    private double maxWeight;
 
     /**
      * Default Constructor
      */
     //============================================================================
-    //TODO
+    public Truck() {
+        this.licensePlate = "";
+        this.maxWeight = 0;
+    }
 
     //============================================================================
 
@@ -23,7 +28,10 @@ public class Truck extends Vehicle {
      * @param maxWeight    maximum weight that the vehicle can hold
      */
     //============================================================================
-    //TODO
+    public Truck(String licensePlate, double maxWeight) {
+        this.licensePlate = licensePlate;
+        this.maxWeight = maxWeight;
+    }
 
     //============================================================================
 
