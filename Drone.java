@@ -7,11 +7,16 @@ import java.util.ArrayList;
 public class Drone extends Vehicle {
 
     final private double GAS_RATE = 1.33;
+    private String licensePlate;
+    private double maxWeight;
+
     /**
      * Default Contructor 
      */
     //============================================================================
-    //TODO
+    public Drone() {
+        super();
+    } // end Drone
 
     //============================================================================
 
@@ -22,7 +27,9 @@ public class Drone extends Vehicle {
      * @param maxWeight    maximum weight that the vehicle can hold
      */
     //============================================================================
-    //TODO
+    public Drone(String licensePlate, double maxWeight) {
+        super(licensePlate, maxWeight);
+    } // end Drone
 
     //============================================================================
 
@@ -39,9 +46,11 @@ public class Drone extends Vehicle {
      */
     @Override
     public double getProfit() {
-        //TODO
+        Vehicle vehicle = new Vehicle();
+        Package packages = new Package();
 
-    }
+        return packages.getPrice() - (vehicle.getRange() * this.GAS_RATE);
+    } // end getProfit
 
     /**
      * Generates a String of the Drone report. Drone report includes:
@@ -57,7 +66,21 @@ public class Drone extends Vehicle {
      */
     @Override
     public String report() {
-        //TODO
+        Vehicle vehicle = new Vehicle();
+        String shippingLabels = "";
+
+        for (int i = 0; i < vehicle.getPackages().size(); i++) {
+            shippingLabels += this.getPackages().get(i).shippingLabel();
+        } // end for
+
+        return "==========Truck Report==========\n" +
+                "License Plate No.: " + this.licensePlate +
+                "Destination: " + vehicle.getZipDest() +
+                "Weight Load: " + vehicle.getCurrentWeight() + "/" + this.maxWeight +
+                "Net Profit: $" + getProfit() +
+                "=====Shipping Labels=====\n" +
+                shippingLabels + "\n" +
+                "==============================";
     }
 
 

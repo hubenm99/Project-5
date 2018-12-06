@@ -21,6 +21,7 @@ public class DatabaseManager {
      * @param file CSV File
      * @return ArrayList of vehicles
      */
+
     public static ArrayList<Vehicle> loadVehicles(File file) {
         ArrayList<Vehicle> vehicles = new ArrayList<>();
         ArrayList<String> lines = new ArrayList<>();
@@ -124,7 +125,27 @@ public class DatabaseManager {
      * @return whether or not it is prime day
      */
     public static boolean loadPrimeDay(File file) {
-        //TODO
+        FileReader fileReader;
+        BufferedReader bufferedReader;
+
+        try {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+
+            ArrayList<String> lines = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null ) {
+                lines.add(line);
+            } // end while
+
+            for (int i = 0; i < lines.size(); i++) {
+                lines.get(i)
+            }
+
+        } catch (IOException e) {
+            return false;
+        }
     }
 
 
@@ -183,7 +204,21 @@ public class DatabaseManager {
      */
 
     public static void saveProfit(File file, double profit) {
-        //TODO
+        FileWriter fileWriter;
+        BufferedWriter bufferedWriter;
+
+        try {
+            fileWriter = new FileWriter(file);
+            bufferedWriter = new BufferedWriter(fileWriter);
+
+            // changes it to a string
+            String stringProfit = Double.toString(profit);
+
+            bufferedWriter.write(stringProfit);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -198,7 +233,18 @@ public class DatabaseManager {
      */
 
     public static void savePackagesShipped(File file, int nPackages) {
-        //TODO
+        FileWriter fileWriter;
+        BufferedWriter bufferedWriter;
+
+        try {
+            fileWriter = new FileWriter(file);
+            bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write(nPackages);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

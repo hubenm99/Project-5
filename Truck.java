@@ -15,8 +15,7 @@ public class Truck extends Vehicle {
      */
     //============================================================================
     public Truck() {
-        this.licensePlate = "";
-        this.maxWeight = 0;
+        super();
     }
 
     //============================================================================
@@ -29,8 +28,7 @@ public class Truck extends Vehicle {
      */
     //============================================================================
     public Truck(String licensePlate, double maxWeight) {
-        this.licensePlate = licensePlate;
-        this.maxWeight = maxWeight;
+       super(licensePlate, maxWeight);
     }
 
     //============================================================================
@@ -48,8 +46,10 @@ public class Truck extends Vehicle {
      */
     @Override
     public double getProfit() {
-        //TODO
+        Package packages = new Package();
+        Vehicle vehicle = new Vehicle();
 
+        return packages.getPrice() - (vehicle.getRange() * this.GAS_RATE);
     }
 
     /**
@@ -66,8 +66,21 @@ public class Truck extends Vehicle {
      */
     @Override
     public String report() {
-        //TODO
+        Vehicle vehicle = new Vehicle();
+        String shippingLabels = "";
 
+        for (int i = 0; i < vehicle.getPackages().size(); i++) {
+            shippingLabels += this.getPackages().get(i).shippingLabel();
+        } // end for
+
+        return "==========Truck Report==========\n" +
+                "License Plate No.: " + this.licensePlate +
+                "Destination: " + vehicle.getZipDest() +
+                "Weight Load: " + vehicle.getCurrentWeight() + "/" + this.maxWeight +
+                "Net Profit: $" + getProfit() +
+                "=====Shipping Labels=====\n" +
+                shippingLabels + "\n" +
+                "==============================";
     }
 
 

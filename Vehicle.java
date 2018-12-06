@@ -10,6 +10,7 @@ public class Vehicle implements Profitable {
     private double currentWeight;
     private int zipDest;
     private ArrayList<Package> packages;
+    private int range;
 
 
     /**
@@ -22,6 +23,7 @@ public class Vehicle implements Profitable {
         this.currentWeight = 0;
         this.zipDest = 0;
         this.packages = new ArrayList<>();
+        this.range = 0;
     }
 
     //============================================================================
@@ -64,11 +66,13 @@ public class Vehicle implements Profitable {
         this.licensePlate = licensePlate;
     }
 
+    public int getRange() {
+        return range;
+    }
 
-
-
-
-
+    public void setRange(int range) {
+        this.range = range;
+    }
 
     /**
      * Returns the maximum weight this vehicle can carry
@@ -216,17 +220,27 @@ public class Vehicle implements Profitable {
      */
     public void fill(ArrayList<Package> warehousePackages) {
 
+        // adds the packages with zero range
         for (int i = 0; i < warehousePackages.size(); i++) {
-            if (warehousePackages.get(i).getDestination().getZipCode() == zipDest) {
-                while (currentWeight != maxWeight) {
-                    packages.add(warehousePackages.get(i));
-                    currentWeight += warehousePackages.get(i).getWeight();
-                } // end while
+            if (warehousePackages.get(i).getDestination().getZipCode() - this.zipDest == 0) {
+                if (this.currentWeight != this.maxWeight) {
+                    this.packages.add(warehousePackages.get(i));
+                    this.currentWeight += warehousePackages.get(i).getWeight();
+                } // end if
             } // end if
         } // end for
 
-
-    }
+        // adds the packages with other zipcodes
+        for (int i = 0; i < warehousePackages.size(); i++) {
+            if (warehousePackages.get(i).getDestination().getZipCode() - this.zipDest != 0) {
+                if (this.currentWeight != this.maxWeight) {
+                    this.packages.add(warehousePackages.get(i));
+                    this.currentWeight += warehousePackages.get(i).getWeight();
+                    this.range += Math.abs(this.zipDest - warehousePackages.get(i).getDestination().getZipCode());
+                } // end if
+            } // end if
+        } // end for
+    } // end fill
 
     @Override
     public double getProfit() {

@@ -6,12 +6,18 @@ import java.util.ArrayList;
  */
 public class CargoPlane extends Vehicle {
     final double GAS_RATE = 2.33;
+    private double currentWeight;
+    private String licensePlate;
+    private double maxWeight;
+    private int range;
 
     /**
      * Default Constructor
      */
     //============================================================================
-    //TODO
+    public CargoPlane() {
+        super();
+    } // end CargoPlane
 
     //============================================================================
 
@@ -22,7 +28,9 @@ public class CargoPlane extends Vehicle {
      * @param maxWeight    maximum weight that the vehicle can hold
      */
     //============================================================================
-    //TODO
+    public CargoPlane(String licensePlate, double maxWeight) {
+        super(licensePlate, maxWeight);
+    } // end CargoPlane
 
     //============================================================================
 
@@ -34,7 +42,27 @@ public class CargoPlane extends Vehicle {
      */
     @Override
     public void fill(ArrayList<Package> warehousePackages) {
-        //TODO
+        Vehicle vehicle = new Vehicle();
+        // adds the packages with zero range
+        for (int i = 0; i < warehousePackages.size(); i++) {
+            if (warehousePackages.get(i).getDestination().getZipCode() - vehicle.getZipDest() == 0) {
+                if (this.currentWeight != this.maxWeight) {
+                    vehicle.getPackages().add(warehousePackages.get(i));
+                    this.currentWeight += warehousePackages.get(i).getWeight();
+                } // end if
+            } // end if
+        } // end for
+
+        // adds the packages with other zipcodes
+        for (int i = 0; i < warehousePackages.size(); i++) {
+            if (warehousePackages.get(i).getDestination().getZipCode() - vehicle.getZipDest() != 0) {
+                if (this.currentWeight != this.maxWeight) {
+                    vehicle.getPackages().add(warehousePackages.get(i));
+                    this.currentWeight += warehousePackages.get(i).getWeight();
+                     this.range += Math.abs(vehicle.getZipDest() - warehousePackages.get(i).getDestination().getZipCode());
+                } // end if
+            } // end if
+        } // end for
 
     }
 
@@ -52,7 +80,10 @@ public class CargoPlane extends Vehicle {
      */
     @Override
     public double getProfit() {
-        //TODO
+        Package packages = new Package();
+        Vehicle vehicle = new Vehicle();
+
+        return packages.getPrice() - (this.range * this.GAS_RATE);
 
     }
 
@@ -70,8 +101,21 @@ public class CargoPlane extends Vehicle {
      */
     @Override
     public String report() {
-        //TODO
+        Vehicle vehicle = new Vehicle();
+        String shippingLabels = "";
 
+        for (int i = 0; i < vehicle.getPackages().size(); i++) {
+            shippingLabels += this.getPackages().get(i).shippingLabel();
+        } // end for
+
+        return "==========Truck Report==========\n" +
+                "License Plate No.: " + this.licensePlate +
+                "Destination: " + vehicle.getZipDest() +
+                "Weight Load: " + vehicle.getCurrentWeight() + "/" + this.maxWeight +
+                "Net Profit: $" + getProfit() +
+                "=====Shipping Labels=====\n" +
+                shippingLabels + "\n" +
+                "==============================";
     }
 
 
