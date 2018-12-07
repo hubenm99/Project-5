@@ -22,6 +22,7 @@ public class DatabaseManager {
      * @return ArrayList of vehicles
      */
 
+    //NOT FINISHED
     public static ArrayList<Vehicle> loadVehicles(File file) {
         ArrayList<Vehicle> vehicles = new ArrayList<>();
         ArrayList<String> lines = new ArrayList<>();
@@ -35,24 +36,31 @@ public class DatabaseManager {
             String line;
 
             try {
-            while ((line = bufferedReader.readLine()) != null) {
-                lines.add(line);
-            } // end while loop
+                while ((line = bufferedReader.readLine()) != null) {
+                    lines.add(line);
+                } // end while loop
+                bufferedReader.close();
+
             } catch (IOException e) {
-                System.out.println(vehicles);
+                return vehicles;
             } // end catch
 
             for (int i = 0; i < lines.size(); i++) {
-                if ((i % 3) != 0) {
-
-                }
+                String type = lines.get(i).split(",")[0];
+                String plate = lines.get(i).split(",")[1];
+                double carryWeight = Double.parseDouble(lines.get(i).split(",")[2]);
+// NOT FINISHED, need to add type of vehicle in the line below
+                vehicles.add(new Vehicle( plate, carryWeight));
 
             }
 
 
         } catch (FileNotFoundException e) {
-            System.out.println(vehicles);
+            return vehicles;
         } // end catch
+
+
+        return vehicles;
     } // end loadVehicles
 
 
@@ -80,8 +88,49 @@ public class DatabaseManager {
      * @return ArrayList of packages
      */
     public static ArrayList<Package> loadPackages(File file) {
-        //TODO
-    }
+        ArrayList<Package> packages = new ArrayList<>();
+        ArrayList<String> lines = new ArrayList<>();
+        FileReader fileReader;
+        BufferedReader bufferedReader;
+
+        try {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+
+            String line;
+
+            try {
+                while ((line = bufferedReader.readLine()) != null) {
+                    lines.add(line);
+                } // end while loop
+                bufferedReader.close();
+
+            } catch (IOException e) {
+                return packages;
+            } // end catch
+
+            for (int i = 0; i < lines.size(); i++) {
+                String id = lines.get(i).split(",")[0];
+                String product = lines.get(i).split(",")[1];
+                double weight = Double.parseDouble(lines.get(i).split(",")[2]);
+                double price = Double.parseDouble(lines.get(i).split(",")[3]);
+                String name = lines.get(i).split(",")[4];
+                String address = lines.get(i).split(",")[5];
+                String city =  lines.get(i).split(",")[6];
+                String state =  lines.get(i).split(",")[7];
+                int zipCode = Integer.parseInt(lines.get(i).split(",")[8]);
+
+                packages.add(new Package(id, product, weight, price, new ShippingAddress(name, address, city, state, zipCode)));
+            } // end for loop
+
+
+        } catch (FileNotFoundException e) {
+            return packages;
+        } // end catch
+
+        return packages;
+    } // end loadPackages
+
 
 
 
@@ -96,7 +145,26 @@ public class DatabaseManager {
      * @return profits from file
      */
     public static double loadProfit(File file) {
-        //TODO
+        FileReader fileReader;
+        BufferedReader bufferedReader;
+        double profit = 0;
+
+        try {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+
+            try {
+                profit = Double.parseDouble(bufferedReader.readLine());
+                bufferedReader.close();
+
+            } catch (IOException e) {
+                return 0;
+            } // end catch
+        }catch(FileNotFoundException e){
+            return 0;
+        } // end catch
+
+        return profit;
     }
 
 
@@ -111,7 +179,26 @@ public class DatabaseManager {
      * @return number of packages shipped from file
      */
     public static int loadPackagesShipped(File file) {
-        //TODO
+        FileReader fileReader;
+        BufferedReader bufferedReader;
+        int packagesShipped = 0;
+
+        try {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+
+            try {
+                packagesShipped = Integer.parseInt(bufferedReader.readLine());
+                bufferedReader.close();
+
+            } catch (IOException e) {
+                return 0;
+            } // end catch
+        }catch(FileNotFoundException e){
+            return 0;
+        }
+
+        return packagesShipped;
     }
 
 
@@ -127,25 +214,31 @@ public class DatabaseManager {
     public static boolean loadPrimeDay(File file) {
         FileReader fileReader;
         BufferedReader bufferedReader;
+        boolean isPrimeDay;
+        int isPrimeDayInt;
 
         try {
             fileReader = new FileReader(file);
             bufferedReader = new BufferedReader(fileReader);
 
-            ArrayList<String> lines = new ArrayList<>();
-            String line;
+            try {
+                isPrimeDayInt = Integer.parseInt(bufferedReader.readLine());
+                bufferedReader.close();
 
-            while ((line = bufferedReader.readLine()) != null ) {
-                lines.add(line);
-            } // end while
-
-            for (int i = 0; i < lines.size(); i++) {
-                lines.get(i)
-            }
-
-        } catch (IOException e) {
+            } catch (IOException e) {
+                return false;
+            } // end catch
+        }catch(FileNotFoundException e){
             return false;
         }
+
+        if(isPrimeDayInt == 1){
+            isPrimeDay = true;
+        }else if(isPrimeDayInt == 0){
+            isPrimeDay = false;
+        }else{isPrimeDay = false;}
+
+        return isPrimeDay;
     }
 
 
@@ -164,8 +257,28 @@ public class DatabaseManager {
      * @param file     File to write vehicles to
      * @param vehicles ArrayList of vehicles to save to file
      */
+    //NOT FINISHED, vehicle type again
     public static void saveVehicles(File file, ArrayList<Vehicle> vehicles) {
         //TODO
+        FileWriter fileWriter;
+        BufferedWriter bufferedWriter;
+
+        try {
+            fileWriter = new FileWriter(file);
+            bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (int i = 0 ; i < vehicles.size() ; i ++){
+                String vehicleType = ;
+                String licensePlate = vehicles.get(i).getLicensePlate();
+                String carryWeight = Double.toString(vehicles.get(i).getMaxWeight());
+
+                bufferedWriter.write(vehicleType + "," + licensePlate + "," + carryWeight + "\n");
+            }
+            bufferedWriter.close();
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -191,6 +304,32 @@ public class DatabaseManager {
      */
     public static void savePackages(File file, ArrayList<Package> packages) {
         //TODO
+        FileWriter fileWriter;
+        BufferedWriter bufferedWriter;
+
+        try {
+            fileWriter = new FileWriter(file);
+            bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (int i = 0 ; i < packages.size() ; i ++){
+                String id = packages.get(i).getID();
+                String productName = packages.get(i).getProduct();
+                String weight = Double.toString(packages.get(i).getWeight());
+                String price = Double.toString(packages.get(i).getPrice());
+                String addressName = packages.get(i).getDestination().getName();
+                String address = packages.get(i).getDestination().getAddress();
+                String city = packages.get(i).getDestination().getCity();
+                String state = packages.get(i).getDestination().getState();
+                String zipCode = Integer.toString(packages.get(i).getDestination().getZipCode());
+
+                bufferedWriter.write(id + "," + productName + "," + weight + "," + price + ","
+                        + addressName + "," + address + "," + city + "," + state + "," + zipCode + "\n");
+            }
+            bufferedWriter.close();
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -215,6 +354,8 @@ public class DatabaseManager {
             String stringProfit = Double.toString(profit);
 
             bufferedWriter.write(stringProfit);
+
+            bufferedWriter.close();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -242,6 +383,8 @@ public class DatabaseManager {
 
             bufferedWriter.write(nPackages);
 
+            bufferedWriter.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -261,6 +404,22 @@ public class DatabaseManager {
      */
 
     public static void savePrimeDay(File file, boolean primeDay) {
-        //TODO
+        FileWriter fileWriter;
+        BufferedWriter bufferedWriter;
+
+        try {
+            fileWriter = new FileWriter(file);
+            bufferedWriter = new BufferedWriter(fileWriter);
+
+            if(primeDay){
+                bufferedWriter.write(1);
+            }else{bufferedWriter.write(0);}
+
+            bufferedWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
