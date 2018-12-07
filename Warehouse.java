@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.io.File;
 import java.util.Scanner;
 
@@ -23,7 +24,11 @@ public class Warehouse {
         Scanner s = new Scanner(System.in);
 
         //1) load data (vehicle, packages, profits, packages shipped and primeday) from files using DatabaseManager
-
+        DatabaseManager.loadVehicles(VEHICLE_FILE);
+        DatabaseManager.loadPackages(PACKAGE_FILE);
+        DatabaseManager.loadProfit(PROFIT_FILE);
+        DatabaseManager.loadPackagesShipped(N_PACKAGES_FILE);
+        boolean isPrimeDay = DatabaseManager.loadPrimeDay(PRIME_DAY_FILE);
 
 
         //2) Show menu and handle user inputs
@@ -37,42 +42,98 @@ public class Warehouse {
                 "===========================");
         int input = s.nextInt();
 
-        if (input < 0 || input > 6) {
-            System.out.println("Error: Option not available.");
-        } else if (input == 1) {
+        switch (input){
+            case 1:
 
-            System.out.println("Enter package ID:");
-            String packageID = s.nextLine();
+                System.out.println("Enter package ID:");
+                String packageID = s.nextLine();
 
-            System.out.println("Enter Product Name:");
-            String productName = s.nextLine();
+                System.out.println("Enter Product Name:");
+                String productName = s.nextLine();
 
-            System.out.println("Enter Weight:");
-            double weight = s.nextInt();
+                System.out.println("Enter Weight:");
+                double weight = s.nextInt();
 
-            System.out.println("Enter Price:");
-            double price = s.nextInt();
+                System.out.println("Enter Price:");
+                double price = s.nextInt();
+                if(isPrimeDay){
+                    price = price * (1.00 - PRIME_DAY_DISCOUNT);
+                }
 
-            System.out.println("Enter Buyer Name:");
-            String buyerName = s.nextLine();
+                System.out.println("Enter Buyer Name:");
+                String buyerName = s.nextLine();
 
-            System.out.println("Enter Address:");
-            String address = s.nextLine();
+                System.out.println("Enter Address:");
+                String address = s.nextLine();
 
-            System.out.println("Enter City:");
-            String city = s.nextLine();
+                System.out.println("Enter City:");
+                String city = s.nextLine();
 
-            System.out.println("Enter State:");
-            String state = s.nextLine();
+                System.out.println("Enter State:");
+                String state = s.nextLine();
 
-            System.out.println("Enter ZIP Code:");
-            String zipCode = s.nextLine();
+                System.out.println("Enter ZIP Code:");
+                int zipCode = Integer.parseInt(s.nextLine());
 
-        } else if (input == 2) {
-            System.out.println("Vehicle Options:\n" +
+                Package pack = new Package(packageID, productName, weight, price, new ShippingAddress(buyerName, address, city, state, zipCode));
+
+                pack.shippingLabel();
+
+                break;
+            case 2:
+                System.out.println("Vehicle Options:\n" +
                     "1) Truck\n" +
                     "2) Drone\n" +
                     "3) Cargo Plane");
+                int choice = s.nextInt();
+
+                switch (choice){
+                    case 1:
+                        System.out.println("Enter License Plate No.:");
+                        String licensePlateTruck = s.nextLine();
+                        System.out.println("Enter Maximum Carry Weight:");
+                        double carryWeightTruck = s.nextDouble();
+
+                        break;
+                    case 2:
+                        System.out.println("Enter License Plate No.:");
+                        String licensePlateDrone = s.nextLine();
+                        System.out.println("Enter Maximum Carry Weight:");
+                        double carryWeightDrone = s.nextDouble();
+
+                        break;
+                    case 3:
+                        System.out.println("Enter License Plate No.:");
+                        String licensePlatePlane = s.nextLine();
+                        System.out.println("Enter Maximum Carry Weight:");
+                        double carryWeightPlane = s.nextDouble();
+
+                        break;
+                    default:
+                        System.out.println("Error: Option not available.");
+                        break;
+                }
+
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+
+            case 5:
+
+                break;
+
+            case 6:
+
+                break;
+            default:
+                System.out.println("Error: Option not available.");
+                break;
         }
 
 
