@@ -210,7 +210,7 @@ public class Vehicle implements Profitable {
 
     /**
      * Fills vehicle with packages with preference of date added and range of its
-     * destination zip code. It will iterate over the packages intially at a range
+     * destination zip code. It will iterate over the packages initially at a range
      * of zero and fill it with as many as it can within its range without going
      * over its maximum weight. The amount the range increases is dependent on the
      * vehicle that is using this. This range it increases by after each iteration
@@ -257,6 +257,7 @@ public class Vehicle implements Profitable {
         return "";
     }
 
+    public String getType(){return "";}
 
 
 

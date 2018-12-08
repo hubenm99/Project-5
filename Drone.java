@@ -83,6 +83,8 @@ public class Drone extends Vehicle {
                 "==============================";
     }
 
-
+    public String getType(){
+        return "Drone";
+    }
 
 }

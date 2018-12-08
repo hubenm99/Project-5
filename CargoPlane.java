@@ -59,7 +59,7 @@ public class CargoPlane extends Vehicle {
                 if (this.currentWeight != this.maxWeight) {
                     vehicle.getPackages().add(warehousePackages.get(i));
                     this.currentWeight += warehousePackages.get(i).getWeight();
-                     this.range += Math.abs(vehicle.getZipDest() - warehousePackages.get(i).getDestination().getZipCode());
+                    this.range += Math.abs(vehicle.getZipDest() - warehousePackages.get(i).getDestination().getZipCode());
                 } // end if
             } // end if
         } // end for
@@ -118,6 +118,8 @@ public class CargoPlane extends Vehicle {
                 "==============================";
     }
 
-
+    public String getType(){
+        return "Cargo Plane";
+    }
 
 }
