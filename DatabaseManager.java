@@ -22,7 +22,6 @@ public class DatabaseManager {
      * @return ArrayList of vehicles
      */
 
-    //NOT FINISHED
     public static ArrayList<Vehicle> loadVehicles(File file) {
         ArrayList<Vehicle> vehicles = new ArrayList<>();
         ArrayList<String> lines = new ArrayList<>();
@@ -49,9 +48,15 @@ public class DatabaseManager {
                 String type = lines.get(i).split(",")[0];
                 String plate = lines.get(i).split(",")[1];
                 double carryWeight = Double.parseDouble(lines.get(i).split(",")[2]);
-// NOT FINISHED, need to add type of vehicle in the line below
-                vehicles.add(new Vehicle( plate, carryWeight));
-
+                if(type.equals("Truck")) {
+                    vehicles.add(new Truck(plate, carryWeight));
+                }
+                if(type.equals("Drone")){
+                    vehicles.add(new Drone(plate, carryWeight));
+                }
+                if(type.equals("Cargo Plane")){
+                    vehicles.add(new CargoPlane(plate, carryWeight));
+                }
             }
 
 
@@ -268,7 +273,7 @@ public class DatabaseManager {
             bufferedWriter = new BufferedWriter(fileWriter);
 
             for (int i = 0 ; i < vehicles.size() ; i ++){
-                String vehicleType = ;
+                String vehicleType = vehicles.get(i).getType();
                 String licensePlate = vehicles.get(i).getLicensePlate();
                 String carryWeight = Double.toString(vehicles.get(i).getMaxWeight());
 
