@@ -141,8 +141,8 @@ public class Package {
         return "====================\n" +
                 "TO: " + destination.getName() + "\n" +
                 destination.getAddress() + "\n" +
-                destination.getCity() + ", " + destination.getState() + ", " + destination.getZipCode() + "\n" +
-                "Weight:" + String.format("%1$13s", weight) + "\n" +
+                destination.getCity() + ", " + destination.getState() + ", " + Integer.toString(destination.getZipCode()) + "\n" +
+                "Weight:" + String.format("%1$13s", String.format("%.2f", weight)) + "\n" +
                 "Price:" + String.format("%1$14s", formatter.format(price)) + "\n" +
                 "Product:" + product + " \n" +
                 "====================";
