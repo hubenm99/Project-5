@@ -274,7 +274,7 @@ public class Warehouse {
                     vehicles.get(chosenVehicle).report();
                     profit = profit + vehicles.get(chosenVehicle).getProfit();
                     npackagesShipped = npackagesShipped + vehicles.get(chosenVehicle).getPackages().size();
-                    
+
                     break;
 
                 case 5:
@@ -300,6 +300,10 @@ public class Warehouse {
 
     public static void printStatisticsReport(double profits, int packagesShipped, int numberOfPackages) {
         NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
-        System.out.println("==========Statistics==========\nProfits: " + formatter.format(profits) + "\nPackages Shipped: " + packagesShipped + "\nPackages in Warehouse: " + numberOfPackages + "\n==============================\n");
+        System.out.println("==========Statistics==========\n" +
+                "Profits:" + String.format("%1$26s", formatter.format(profits)) +
+                "\nPackages Shipped:" + String.format("%1$17s", packagesShipped) +
+                "\nPackages in Warehouse:" + String.format("%1$12s", numberOfPackages) +
+                "\n==============================\n");
     }
 }

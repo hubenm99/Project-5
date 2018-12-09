@@ -386,7 +386,7 @@ public class DatabaseManager {
             fileWriter = new FileWriter(file);
             bufferedWriter = new BufferedWriter(fileWriter);
 
-            bufferedWriter.write(nPackages);
+            bufferedWriter.write(Integer.toString(nPackages));
 
             bufferedWriter.close();
 
@@ -417,8 +417,8 @@ public class DatabaseManager {
             bufferedWriter = new BufferedWriter(fileWriter);
 
             if(primeDay){
-                bufferedWriter.write(1);
-            }else{bufferedWriter.write(0);}
+                bufferedWriter.write("1");
+            }else{bufferedWriter.write("0");}
 
             bufferedWriter.close();
 

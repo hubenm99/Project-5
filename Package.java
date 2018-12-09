@@ -1,3 +1,6 @@
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  * <h1>Package</h1> Represents a package
  */
@@ -46,7 +49,7 @@ public class Package {
      * @return id of package
      */
     public String getID() {
-       return id;
+        return id;
     } // end getID
 
 
@@ -133,13 +136,15 @@ public class Package {
      * @return The package's shipping label.
      */
     public String shippingLabel() {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+
         return "====================\n" +
                 "TO: " + destination.getName() + "\n" +
                 destination.getAddress() + "\n" +
                 destination.getCity() + ", " + destination.getState() + ", " + destination.getZipCode() + "\n" +
-                "Weight: " + weight + "\n" +
-                "Price: " + price + "\n" +
-                "Product: " + product + "\n" +
+                "Weight:" + String.format("%1$13s", weight) + "\n" +
+                "Price:" + String.format("%1$14s", formatter.format(price)) + "\n" +
+                "Product:" + product + " \n" +
                 "====================";
     }
 
