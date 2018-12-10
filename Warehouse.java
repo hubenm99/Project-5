@@ -43,7 +43,7 @@ public class Warehouse {
 
         while (input != 5) {
             //2) Show menu and handle user inputs
-            if (isPrimeDay = false) {
+            if (isPrimeDay == false) {
                 System.out.println("==========Options==========\n" +
                         "1) Add Package\n" +
                         "2) Add Vehicle\n" +
