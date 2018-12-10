@@ -41,7 +41,7 @@ public class Warehouse {
         boolean isPrimeDay = DatabaseManager.loadPrimeDay(PRIME_DAY_FILE);
         int input = 0;
 
-        while (input != 5) {
+        while (input != 6) {
             //2) Show menu and handle user inputs
             if (isPrimeDay == false) {
                 System.out.println("==========Options==========\n" +
@@ -78,7 +78,7 @@ public class Warehouse {
                     double weight = s.nextDouble();
 
                     System.out.println("Enter Price:");
-                    double price = s.nextInt();
+                    double price = s.nextDouble();
                     if (isPrimeDay) {
                         price = price * (1.00 - PRIME_DAY_DISCOUNT);
                     }
@@ -157,7 +157,7 @@ public class Warehouse {
                     if (isPrimeDay) {
                         isPrimeDay = false;
                     }
-                    if (isPrimeDay == false) {
+                    else if (isPrimeDay == false) {
                         isPrimeDay = true;
                     }
                     break;
@@ -192,10 +192,11 @@ public class Warehouse {
                                         break;
                                     }
                                 }
+                                flag2 = true;
                                 if (chosenVehicle == -1) {
                                     System.out.println("Error: No vehicles of selected type are available.");
+                                    flag2 = false;
                                 }
-                                flag2 = true;
                                 break;
 
                             case 2:
@@ -205,10 +206,11 @@ public class Warehouse {
                                         break;
                                     }
                                 }
+                                flag2 = true;
                                 if (chosenVehicle == -1) {
                                     System.out.println("Error: No vehicles of selected type are available.");
+                                    flag2 = false;
                                 }
-                                flag2 = true;
                                 break;
 
                             case 3:
@@ -218,10 +220,11 @@ public class Warehouse {
                                         break;
                                     }
                                 }
+                                flag2 = true;
                                 if (chosenVehicle == -1) {
                                     System.out.println("Error: No vehicles of selected type are available.");
+                                    flag2 = false;
                                 }
-                                flag2 = true;
                                 break;
 
                             case 4:
