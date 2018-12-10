@@ -33,7 +33,7 @@ public class Truck extends Vehicle {
      */
     //============================================================================
     public Truck(String licensePlate, double maxWeight) {
-       super(licensePlate, maxWeight);
+        super(licensePlate, maxWeight);
     }
 
     //============================================================================
@@ -88,6 +88,8 @@ public class Truck extends Vehicle {
                 "==============================";
     }
 
-
+    public String getType() {
+        return "Truck";
+    }
 
 }

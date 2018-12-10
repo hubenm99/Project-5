@@ -16,7 +16,7 @@ public class Drone extends Vehicle {
     private double maxWeight;
 
     /**
-     * Default Contructor 
+     * Default Contructor
      */
     //============================================================================
     public Drone() {
