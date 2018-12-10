@@ -69,13 +69,13 @@ public class Warehouse {
                 case 1:
 
                     System.out.println("Enter package ID:");
-                    String packageID = s.nextLine();
+                    String packageID = s.next();
 
                     System.out.println("Enter Product Name:");
-                    String productName = s.nextLine();
+                    String productName = s.next();
 
                     System.out.println("Enter Weight:");
-                    double weight = s.nextInt();
+                    double weight = s.nextDouble();
 
                     System.out.println("Enter Price:");
                     double price = s.nextInt();
@@ -84,19 +84,19 @@ public class Warehouse {
                     }
 
                     System.out.println("Enter Buyer Name:");
-                    String buyerName = s.nextLine();
+                    String buyerName = s.next();
 
                     System.out.println("Enter Address:");
-                    String address = s.nextLine();
+                    String address = s.next();
 
                     System.out.println("Enter City:");
-                    String city = s.nextLine();
+                    String city = s.next();
 
                     System.out.println("Enter State:");
-                    String state = s.nextLine();
+                    String state = s.next();
 
                     System.out.println("Enter ZIP Code:");
-                    int zipCode = Integer.parseInt(s.nextLine());
+                    int zipCode = s.nextInt();
 
                     Package pack = new Package(packageID, productName, weight, price,
                             new ShippingAddress(buyerName, address, city, state, zipCode));
@@ -118,7 +118,7 @@ public class Warehouse {
                         switch (input2) {
                             case 1:
                                 System.out.println("Enter License Plate No.:");
-                                String licensePlateTruck = s.nextLine();
+                                String licensePlateTruck = s.next();
                                 System.out.println("Enter Maximum Carry Weight:");
                                 double carryWeightTruck = s.nextDouble();
                                 //Does this work? Or do we need to do Vehicle truckAddition =
@@ -129,7 +129,7 @@ public class Warehouse {
 
                             case 2:
                                 System.out.println("Enter License Plate No.:");
-                                String licensePlateDrone = s.nextLine();
+                                String licensePlateDrone = s.next();
                                 System.out.println("Enter Maximum Carry Weight:");
                                 double carryWeightDrone = s.nextDouble();
                                 vehicles.add(new Drone(licensePlateDrone, carryWeightDrone));
@@ -138,7 +138,7 @@ public class Warehouse {
 
                             case 3:
                                 System.out.println("Enter License Plate No.:");
-                                String licensePlatePlane = s.nextLine();
+                                String licensePlatePlane = s.next();
                                 System.out.println("Enter Maximum Carry Weight:");
                                 double carryWeightPlane = s.nextDouble();
                                 vehicles.add(new CargoPlane(licensePlatePlane, carryWeightPlane));
