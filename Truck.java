@@ -1,12 +1,17 @@
 import java.util.ArrayList;
 
-
 /**
- * <h1>Truck</h1> Represents a Truck
+ * CS 180 - Project 5
+ *
+ * This is the Truck Class
+ *
+ * @author Nick Huber, Jon Bradbury, Gabe Efsits
+ * @version 12/9/18
  */
+
 public class Truck extends Vehicle {
 
-    private final double GAS_RATE = 1.66;
+    private final double gasRate = 1.66;
     private String licensePlate;
     private double maxWeight;
 
@@ -28,7 +33,7 @@ public class Truck extends Vehicle {
      */
     //============================================================================
     public Truck(String licensePlate, double maxWeight) {
-        super(licensePlate, maxWeight);
+       super(licensePlate, maxWeight);
     }
 
     //============================================================================
@@ -49,7 +54,7 @@ public class Truck extends Vehicle {
         Package packages = new Package();
         Vehicle vehicle = new Vehicle();
 
-        return packages.getPrice() - (vehicle.getRange() * this.GAS_RATE);
+        return packages.getPrice() - (vehicle.getRange() * this.gasRate);
     }
 
     /**
@@ -83,9 +88,6 @@ public class Truck extends Vehicle {
                 "==============================";
     }
 
-    public String getType(){
-        return "Truck";
-    }
 
 
 }

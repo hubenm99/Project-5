@@ -1,7 +1,12 @@
 import java.util.ArrayList;
 
 /**
- * <h1>Vehicle</h1> Represents a vehicle
+ * CS 180 - Project 5
+ *
+ * This is the Vehicle class
+ *
+ * @author Nick Huber, Jon Bradbury, Gabe Efsits
+ * @version 12/9/18
  */
 
 public class Vehicle implements Profitable {
@@ -257,7 +262,9 @@ public class Vehicle implements Profitable {
         return "";
     }
 
-    public String getType(){return "";}
+    public String getType() {
+        return "";
+    }
 
 
 

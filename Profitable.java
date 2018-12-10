@@ -1,8 +1,10 @@
 /**
- * <h1>Profitable</h1>
+ * CS 180 - Project 5
  *
- * This interface represents something that can be used to make a profit. Along
- * with returning total profits it must also be able to provide a report.
+ * This is the Profitable Class
+ *
+ * @author Nick Huber, Jon Bradbury, Gabe Efsits
+ * @version 12/9/18
  */
 
 public interface Profitable {

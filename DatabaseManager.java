@@ -2,10 +2,14 @@ import java.util.ArrayList;
 import java.io.*;
 
 /**
- * <h1>Database Manager</h1>
+ * CS 180 - Project 5
  *
- * Used to locally save and retrieve data.
+ * This is the DatabaseManager Class
+ *
+ * @author Nick Huber, Jon Bradbury, Gabe Efsits
+ * @version 12/9/18
  */
+
 public class DatabaseManager {
 
     /**
@@ -48,13 +52,13 @@ public class DatabaseManager {
                 String type = lines.get(i).split(",")[0];
                 String plate = lines.get(i).split(",")[1];
                 double carryWeight = Double.parseDouble(lines.get(i).split(",")[2]);
-                if(type.equals("Truck")) {
+                if (type.equals("Truck")) {
                     vehicles.add(new Truck(plate, carryWeight));
                 }
-                if(type.equals("Drone")){
+                if (type.equals("Drone")) {
                     vehicles.add(new Drone(plate, carryWeight));
                 }
-                if(type.equals("Cargo Plane")){
+                if (type.equals("Cargo Plane")) {
                     vehicles.add(new CargoPlane(plate, carryWeight));
                 }
             }
@@ -125,7 +129,8 @@ public class DatabaseManager {
                 String state =  lines.get(i).split(",")[7];
                 int zipCode = Integer.parseInt(lines.get(i).split(",")[8]);
 
-                packages.add(new Package(id, product, weight, price, new ShippingAddress(name, address, city, state, zipCode)));
+                packages.add(new Package(id, product, weight, price,
+                        new ShippingAddress(name, address, city, state, zipCode)));
             } // end for loop
 
 
@@ -165,7 +170,7 @@ public class DatabaseManager {
             } catch (IOException e) {
                 return 0;
             } // end catch
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             return 0;
         } // end catch
 
@@ -199,7 +204,7 @@ public class DatabaseManager {
             } catch (IOException e) {
                 return 0;
             } // end catch
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             return 0;
         }
 
@@ -233,15 +238,17 @@ public class DatabaseManager {
             } catch (IOException e) {
                 return false;
             } // end catch
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             return false;
         }
 
-        if(isPrimeDayInt == 1){
+        if (isPrimeDayInt == 1) {
             isPrimeDay = true;
-        }else if(isPrimeDayInt == 0){
+        } else if (isPrimeDayInt == 0) {
             isPrimeDay = false;
-        }else{isPrimeDay = false;}
+        } else {
+            isPrimeDay = false;
+        }
 
         return isPrimeDay;
     }
@@ -264,7 +271,6 @@ public class DatabaseManager {
      */
     //NOT FINISHED, vehicle type again
     public static void saveVehicles(File file, ArrayList<Vehicle> vehicles) {
-        //TODO
         FileWriter fileWriter;
         BufferedWriter bufferedWriter;
 
@@ -272,7 +278,7 @@ public class DatabaseManager {
             fileWriter = new FileWriter(file);
             bufferedWriter = new BufferedWriter(fileWriter);
 
-            for (int i = 0 ; i < vehicles.size() ; i ++){
+            for (int i = 0 ; i < vehicles.size() ; i++) {
                 String vehicleType = vehicles.get(i).getType();
                 String licensePlate = vehicles.get(i).getLicensePlate();
                 String carryWeight = Double.toString(vehicles.get(i).getMaxWeight());
@@ -281,7 +287,7 @@ public class DatabaseManager {
             }
             bufferedWriter.close();
 
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -308,7 +314,6 @@ public class DatabaseManager {
      * @param packages ArrayList of packages to save to file
      */
     public static void savePackages(File file, ArrayList<Package> packages) {
-        //TODO
         FileWriter fileWriter;
         BufferedWriter bufferedWriter;
 
@@ -316,7 +321,7 @@ public class DatabaseManager {
             fileWriter = new FileWriter(file);
             bufferedWriter = new BufferedWriter(fileWriter);
 
-            for (int i = 0 ; i < packages.size() ; i ++){
+            for (int i = 0 ; i < packages.size() ; i++) {
                 String id = packages.get(i).getID();
                 String productName = packages.get(i).getProduct();
                 String weight = Double.toString(packages.get(i).getWeight());
@@ -332,7 +337,7 @@ public class DatabaseManager {
             }
             bufferedWriter.close();
 
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -416,9 +421,11 @@ public class DatabaseManager {
             fileWriter = new FileWriter(file);
             bufferedWriter = new BufferedWriter(fileWriter);
 
-            if(primeDay){
+            if (primeDay) {
                 bufferedWriter.write("1");
-            }else{bufferedWriter.write("0");}
+            } else {
+                bufferedWriter.write("0");
+            }
 
             bufferedWriter.close();
 

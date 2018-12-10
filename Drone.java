@@ -1,12 +1,17 @@
 import java.util.ArrayList;
 
 /**
- * <h1>Drone</h1> Represents a Drone
+ * CS 180 - Project 5
+ *
+ * This is the Drone Class
+ *
+ * @author Nick Huber, Jon Bradbury, Gabe Efsits
+ * @version 12/9/18
  */
 
 public class Drone extends Vehicle {
 
-    final private double GAS_RATE = 1.33;
+    final private double gasRate = 1.33;
     private String licensePlate;
     private double maxWeight;
 
@@ -49,7 +54,7 @@ public class Drone extends Vehicle {
         Vehicle vehicle = new Vehicle();
         Package packages = new Package();
 
-        return packages.getPrice() - (vehicle.getRange() * this.GAS_RATE);
+        return packages.getPrice() - (vehicle.getRange() * this.gasRate);
     } // end getProfit
 
     /**
@@ -83,7 +88,7 @@ public class Drone extends Vehicle {
                 "==============================";
     }
 
-    public String getType(){
+    public String getType() {
         return "Drone";
     }
 

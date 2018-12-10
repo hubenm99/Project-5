@@ -2,8 +2,14 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
- * <h1>Package</h1> Represents a package
+ * CS 180 - Project 5
+ *
+ * This is the Package Class
+ *
+ * @author Nick Huber, Jon Bradbury, Gabe Efsits
+ * @version 12/9/18
  */
+
 public class Package {
     private String id;
     private String product;
@@ -35,7 +41,7 @@ public class Package {
      *
      */
     //============================================================================
-    public Package(String id, String product, double weight, double price, ShippingAddress destination){
+    public Package(String id, String product, double weight, double price, ShippingAddress destination) {
         this.id = id;
         this.product = product;
         this.weight = weight;
@@ -141,7 +147,8 @@ public class Package {
         return "====================\n" +
                 "TO: " + destination.getName() + "\n" +
                 destination.getAddress() + "\n" +
-                destination.getCity() + ", " + destination.getState() + ", " + Integer.toString(destination.getZipCode()) + "\n" +
+                destination.getCity() + ", " + destination.getState() + ", " +
+                Integer.toString(destination.getZipCode()) + "\n" +
                 "Weight:" + String.format("%1$13s", String.format("%.2f", weight)) + "\n" +
                 "Price:" + String.format("%1$14s", formatter.format(price)) + "\n" +
                 "Product:" + product + " \n" +

@@ -8,16 +8,21 @@ import java.util.ArrayList;
 
 
 /**
- * <h1>Warehouse</h1>
+ * CS 180 - Project 5
+ *
+ * This is the Warehouse Class
+ *
+ * @author Nick Huber, Jon Bradbury, Gabe Efsits
+ * @version 12/9/18
  */
 
 public class Warehouse {
-    final static String folderPath = "files/";
-    final static File VEHICLE_FILE = new File(folderPath + "VehicleList.csv");
-    final static File PACKAGE_FILE = new File(folderPath + "PackageList.csv");
-    final static File PROFIT_FILE = new File(folderPath + "Profit.txt");
-    final static File N_PACKAGES_FILE = new File(folderPath + "NumberOfPackages.txt");
-    final static File PRIME_DAY_FILE = new File(folderPath + "PrimeDay.txt");
+    final static String FOLDER_PATH = "files/";
+    final static File VEHICLE_FILE = new File(FOLDER_PATH + "VehicleList.csv");
+    final static File PACKAGE_FILE = new File(FOLDER_PATH + "PackageList.csv");
+    final static File PROFIT_FILE = new File(FOLDER_PATH + "Profit.txt");
+    final static File N_PACKAGES_FILE = new File(FOLDER_PATH + "NumberOfPackages.txt");
+    final static File PRIME_DAY_FILE = new File(FOLDER_PATH + "PrimeDay.txt");
     final static double PRIME_DAY_DISCOUNT = .15;
 
     /**
@@ -36,7 +41,7 @@ public class Warehouse {
         boolean isPrimeDay = DatabaseManager.loadPrimeDay(PRIME_DAY_FILE);
         int input = 0;
 
-        while(input != 5) {
+        while (input != 5) {
             //2) Show menu and handle user inputs
             if (isPrimeDay = false) {
                 System.out.println("==========Options==========\n" +
@@ -93,7 +98,8 @@ public class Warehouse {
                     System.out.println("Enter ZIP Code:");
                     int zipCode = Integer.parseInt(s.nextLine());
 
-                    Package pack = new Package(packageID, productName, weight, price, new ShippingAddress(buyerName, address, city, state, zipCode));
+                    Package pack = new Package(packageID, productName, weight, price,
+                            new ShippingAddress(buyerName, address, city, state, zipCode));
 
                     warehousePackages.add(pack);
                     pack.shippingLabel();
@@ -101,7 +107,8 @@ public class Warehouse {
                     break;
                 case 2:
                     boolean flag = false;
-                    while(flag == false) {
+
+                    while (flag == false) {
                         System.out.println("Vehicle Options:\n" +
                                 "1) Truck\n" +
                                 "2) Drone\n" +
@@ -114,7 +121,8 @@ public class Warehouse {
                                 String licensePlateTruck = s.nextLine();
                                 System.out.println("Enter Maximum Carry Weight:");
                                 double carryWeightTruck = s.nextDouble();
-                                //Does this work? Or do we need to do Vehicle truckAddition = new Truck(licensePlateTruck, carryWeightTruck), and then add that to the array
+                                //Does this work? Or do we need to do Vehicle truckAddition =
+                                // new Truck(licensePlateTruck, carryWeightTruck), and then add that to the array
                                 vehicles.add(new Truck(licensePlateTruck, carryWeightTruck));
                                 flag = true;
                                 break;
@@ -156,18 +164,19 @@ public class Warehouse {
 
                 case 4:
 
-                    if(vehicles.size() == 0){
+                    if (vehicles.size() == 0) {
                         System.out.println("Error: No vehicles available.");
                         break;
                     }
-                    if(warehousePackages.size() == 0){
+                    if (warehousePackages.size() == 0) {
                         System.out.println("Error: No packages available.");
                         break;
                     }
 
                     int chosenVehicle = -1;
                     boolean flag2 = false;
-                    while(flag2 == false) {
+
+                    while (flag2 == false) {
                         System.out.println("Options:\n" +
                                 "1) Send Truck\n" +
                                 "2) Send Drone\n" +
@@ -227,7 +236,7 @@ public class Warehouse {
                     }
 
                     boolean flag3 = false;
-                    while(flag3 == false) {
+                    while (flag3 == false) {
                         System.out.println("ZIP Code Options:\n" +
                                 "1) Send to first ZIP Code\n" +
                                 "2) Send to mode of ZIP Codes");
@@ -245,20 +254,21 @@ public class Warehouse {
                                 int count = 1;
                                 int count2 = 0;
 
-                                for(int i = 0; i < warehousePackages.size(); i++){
-                                   modeZipcode =  warehousePackages.get(0).getDestination().getZipCode();
-                                   count = 1;
+                                for (int i = 0; i < warehousePackages.size(); i++) {
+                                    modeZipcode =  warehousePackages.get(0).getDestination().getZipCode();
+                                    count = 1;
 
-                                   for(int j = i; j < warehousePackages.size(); j++){
-                                       if(warehousePackages.get(i).getDestination().getZipCode() == warehousePackages.get(j).getDestination().getZipCode()){
-                                           count++;
-                                       }
-                                   }
+                                    for (int j = i; j < warehousePackages.size(); j++) {
+                                        if (warehousePackages.get(i).getDestination().getZipCode() ==
+                                                warehousePackages.get(j).getDestination().getZipCode()) {
+                                            count++;
+                                        }
+                                    }
 
-                                   if(count > count2){
-                                       modeZipcode2 = modeZipcode;
-                                       count2 = count;
-                                   }
+                                    if (count > count2) {
+                                        modeZipcode2 = modeZipcode;
+                                        count2 = count;
+                                    }
                                 }
                                 vehicles.get(chosenVehicle).setZipDest(modeZipcode2);
                                 flag3 = true;

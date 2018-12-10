@@ -2,10 +2,16 @@ import java.util.ArrayList;
 
 
 /**
- * <h1>CargoPlane</h1> Represents a Cargo Plane
+ * CS 180 - Project 5
+ *
+ * This is the CargoPlane Class
+ *
+ * @author Nick Huber, Jon Bradbury, Gabe Efsits
+ * @version 12/9/18
  */
+
 public class CargoPlane extends Vehicle {
-    final double GAS_RATE = 2.33;
+    final double gasRate = 2.33;
     private double currentWeight;
     private String licensePlate;
     private double maxWeight;
@@ -59,7 +65,8 @@ public class CargoPlane extends Vehicle {
                 if (this.currentWeight != this.maxWeight) {
                     vehicle.getPackages().add(warehousePackages.get(i));
                     this.currentWeight += warehousePackages.get(i).getWeight();
-                    this.range += Math.abs(vehicle.getZipDest() - warehousePackages.get(i).getDestination().getZipCode());
+                    this.range += Math.abs(vehicle.getZipDest() -
+                            warehousePackages.get(i).getDestination().getZipCode());
                 } // end if
             } // end if
         } // end for
@@ -83,7 +90,7 @@ public class CargoPlane extends Vehicle {
         Package packages = new Package();
         Vehicle vehicle = new Vehicle();
 
-        return packages.getPrice() - (this.range * this.GAS_RATE);
+        return packages.getPrice() - (this.range * this.gasRate);
 
     }
 
@@ -118,7 +125,7 @@ public class CargoPlane extends Vehicle {
                 "==============================";
     }
 
-    public String getType(){
+    public String getType() {
         return "Cargo Plane";
     }
 
